@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>图片上传并查看图片详情</title>
+  </head>
+  <body>
+    <input type="file" name="file" onchange="showPreview(this)" />
+    <img  id="portrait" src="" style="display:none;" />
+  </body>
+</html>
+<script type="text/javascript">
+
+  function showPreview(source) {
+    var file = source.files[0];
+    if(window.FileReader) {
+      var fr = new FileReader();
+      console.log(fr);
+      var portrait = document.getElementById('portrait');
+      fr.onloadend = function (ev) {
+        portrait.src = ev.target.result;
+      };
+      fr.readAsDataURL(file);
+      portrait.style.display = 'block';
+    }
+  }
+
+</script>
